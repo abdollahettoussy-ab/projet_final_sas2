@@ -28,7 +28,7 @@ electeurs: ["H142536" , "JU46895", "HG663559" ,"L256455" ]
 cin : "AG543456",
 nom : "khalide",
 prenom : "waaaz",
-partiPolitique : "Nkhla",
+partiPolitique : "PAM",
 age: 32,
 electeurs: ["B506455"]
 }];
@@ -250,9 +250,21 @@ function Modifier_informations_de_un_candidat(){
 
 function Supprimer_un_candidat(){
     let suprime = prompt("Entrer le CIN de candidat vous souhaitez supprimer: ");
+    
+        
     for(i=0;i<candidats.length;i++){
+        if(candidats[i].cin == suprime){
+            for(let j = i;j<candidats.length - 1; j++){
+                candidats[j] = candidats[j+1];
+            }
+            candidats.length = candidats.length -1;
+            break;
+        }
 
+        
     }
+    console.log(candidats);
+    
 
 }
 function Rechercher_des_candidat(){
@@ -334,15 +346,16 @@ function  Statistiques_de_élection(){
         const partiePoli = prompt("Entrer la partie politique: ");
                     let somme =0
         for(i=0;i<candidats.length;i++){
-            if(candidats[i].partiPolitique.length == partiePoli){
+            if(candidats[i].partiPolitique == partiePoli){
+                somme ++
                 
-                console.log(`le nombre de candidats dans ${partiePoli} est: ${somme}`);
             }
             else if(candidats[i].partiPolitique !== partiePoli){
-                console.log(`Désolé ce partie politique est pas existé.`);
             }
         }
-            
+        if(somme>0){
+            console.log(`le nombre de candidats dans ${partiePoli} est: ${somme}`);
+        }else{console.log(`Désolé ce partie politique est pas existé.`);}
       }
     
 
