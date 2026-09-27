@@ -4,9 +4,9 @@ const candidats=[{
 cin : "AB123456",
 nom : "Boushaba",
 prenom : "Soufiane",
-partiPolitique : "Indépendant",
+partiPolitique : "",
 age: 40,
-electeurs: ["HG1565135", "HG524565" , "HG663559" ,"L256455"]
+electeurs: ["HG1565135", "HG524565" ]
 },
 {
 cin : "JE123456",
@@ -22,7 +22,7 @@ nom : "Mohmade",
 prenom : "bada",
 partiPolitique : "PAM",
 age: 30,
-electeurs: ["H142536" , "JU46895" ]
+electeurs: ["H142536" , "JU46895", "HG663559" ,"L256455" ]
 },
 {
 cin : "AG543456",
@@ -291,10 +291,61 @@ function  Statistiques_de_élection(){
        4: pour afficher le nombre de candidats par parti politique.
        Entrer:  `));
        if(Statistiques == 1){
-        for(i=0;i<candidats.length;i++){
-
+        let somme = 0
+        for(let i=0;i<candidats.length;i++){
+            somme = i+1
         }
+        console.log(`le nobre totale de candidats est: ${somme}`);
        }
+       else if(Statistiques == 2){
+        let somme = 0
+        for(let i=0;i<candidats.length;i++){
+            somme += candidats[i].electeurs.length
+        }
+        console.log(`le nombre totale de de votes est: ${somme}`);
+       }
+       else if(Statistiques == 3){
+        let top1 ;
+        let top2 ;
+        let top3 ;
+        for(let i = 0;i<candidats.length;i++){
+            if(top1 === undefined || 
+                candidats[i].electeurs.length > candidats[top1].electeurs.length){
+                    top3 = top2;
+                    top2 = top1;
+                    top1 = i   ;
+                }
+                else if(top2 === undefined || 
+                    candidats[i].electeurs.length > candidats[top2].electeurs.length){
+                        top3 = top2;
+                        top2 = i   ;
+                    }
+                else if(top3 === undefined ||
+                    candidats[i].electeurs.length > candidats[top3].electeurs.length){
+                        top3 = i ;
+                    }
+              
+        }
+        console.log(candidats[top1]);
+        console.log(candidats[top2]);
+        console.log(candidats[top3]);
+      }
+      else if(Statistiques === 4){
+        const partiePoli = prompt("Entrer la partie politique: ");
+                    let somme =0
+        for(i=0;i<candidats.length;i++){
+            if(candidats[i].partiPolitique.length == partiePoli){
+                
+                console.log(`le nombre de candidats dans ${partiePoli} est: ${somme}`);
+            }
+            else if(candidats[i].partiPolitique !== partiePoli){
+                console.log(`Désolé ce partie politique est pas existé.`);
+            }
+        }
+            
+      }
+    
 
 
-}
+} 
+    
